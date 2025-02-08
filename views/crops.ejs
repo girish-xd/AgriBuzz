@@ -1,0 +1,353 @@
+<% layout("/layouts/boilerplate")%>
+
+<!-- Custom CSS -->
+<style>
+  .card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .card-img-top {
+    height: 250px;
+    object-fit: cover;
+  }
+
+  .card-body {
+    text-align: center;
+    background-color: #f8f9fa;
+    padding: 10px;
+  }
+
+  .card-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  .card-text {
+    font-size: 16px;
+    color: #6c757d;
+    cursor: pointer;
+    text-decoration: none;
+  }
+</style>
+
+<body>
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <!-- Card 1 -->
+      <div class="col-md-4">
+        <div class="card">
+          <img
+            src="/images/apple.jpg"
+            class="card-img-top"
+            alt="Beautiful Flower"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Apple</h5>
+            <a href="/user/crops/apple" class="card-text text-decoration-none"
+              >See nearby market</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="col-md-4">
+        <div class="card">
+          <img
+            src="/images/banana.jpg"
+            class="card-img-top"
+            alt="Beautiful Scenery"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Banana</h5>
+            <a class="card-text text-decoration-none">See nearby market</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="col-md-4">
+        <div class="card">
+          <img
+            src="/images/rice.jpg"
+            class="card-img-top"
+            alt="Beautiful Landscape"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Rice</h5>
+            <a class="card-text text-decoration-none">See nearby market</a>
+          </div>
+        </div>
+      </div>
+
+      <!--Card 4-->
+      <div class="col-md-4">
+        <div class="card">
+          <img
+            src="/images/promigranate.jpg"
+            class="card-img-top"
+            alt="Beautiful Landscape"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Pomegranate</h5>
+            <a class="card-text text-decoration-none">See nearby market</a>
+          </div>
+        </div>
+      </div>
+
+      <!--Card 5-->
+      <div class="col-md-4">
+        <div class="card">
+          <img
+            src="/images/pigeonPeas.avif"
+            class="card-img-top"
+            alt="Beautiful Landscape"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Pigeonpeas</h5>
+            <a class="card-text text-decoration-none">See nearby market</a>
+          </div>
+        </div>
+      </div>
+
+      <!--Card 6-->
+      <div class="col-md-4">
+        <div class="card">
+          <img
+            src="/images/papaya.jpg"
+            class="card-img-top"
+            alt="Beautiful Landscape"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Papaya</h5>
+            <a class="card-text text-decoration-none">See nearby market</a>
+          </div>
+        </div>
+      </div>
+
+      <!--Card 7-->
+      <div class="col-md-4">
+        <div class="card">
+          <img
+            src="/images/Orange.jpg"
+            class="card-img-top"
+            alt="Beautiful Landscape"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Orange</h5>
+            <a class="card-text text-decoration-none">See nearby market</a>
+          </div>
+        </div>
+      </div>
+
+      <!--Card 8-->
+      <div class="col-md-4">
+        <div class="card">
+          <img
+            src="/images/Muskmelon.jpg"
+            class="card-img-top"
+            alt="Beautiful Landscape"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Muskmelon</h5>
+            <a class="card-text text-decoration-none">See nearby market</a>
+          </div>
+        </div>
+      </div>
+
+      <!--Card 9-->
+      <div class="col-md-4">
+        <div class="card">
+          <img
+            src="/images/mung-beans.webp"
+            class="card-img-top"
+            alt="Beautiful Landscape"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Mungbean</h5>
+            <a class="card-text text-decoration-none">See nearby market</a>
+          </div>
+        </div>
+      </div>
+
+      <!--Card 10-->
+      <div class="col-md-4">
+        <div class="card">
+          <img
+            src="/images/Mothbeans.jpg"
+            class="card-img-top"
+            alt="Beautiful Landscape"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Mothbeans</h5>
+            <a class="card-text text-decoration-none">See nearby market</a>
+          </div>
+        </div>
+      </div>
+
+      <!--Card 11-->
+      <div class="col-md-4">
+        <div class="card">
+          <img
+            src="/images/mango.jpg"
+            class="card-img-top"
+            alt="Beautiful Landscape"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Mango</h5>
+            <a class="card-text text-decoration-none">See nearby market</a>
+          </div>
+        </div>
+      </div>
+
+      <!--Card 12-->
+      <div class="col-md-4">
+        <div class="card">
+          <img
+            src="/images/Maize.jpg"
+            class="card-img-top"
+            alt="Beautiful Landscape"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Maize</h5>
+            <a class="card-text text-decoration-none">See nearby market</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card">
+          <img
+            src="/images/Lentil.jpg"
+            class="card-img-top"
+            alt="Beautiful Landscape"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Lentil</h5>
+            <a class="card-text text-decoration-none">See nearby market</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card">
+          <img
+            src="/images/KidneyBeans.jpg"
+            class="card-img-top"
+            alt="Beautiful Landscape"
+          />
+          <div class="card-body">
+            <h5 class="card-title">KidneyBeans</h5>
+            <a class="card-text text-decoration-none">See nearby market</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card">
+          <img
+            src="/images/jute.jpg"
+            class="card-img-top"
+            alt="Beautiful Landscape"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Jute</h5>
+            <a class="card-text text-decoration-none">See nearby market</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card">
+          <img
+            src="/images/Grape.jpg"
+            class="card-img-top"
+            alt="Beautiful Landscape"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Grapes</h5>
+            <a class="card-text text-decoration-none">See nearby market</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card">
+          <img
+            src="/images/Cotton.jpg"
+            class="card-img-top"
+            alt="Beautiful Landscape"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Cotton</h5>
+            <a class="card-text text-decoration-none">See nearby market</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <img
+            src="/images/Coffee.jpg"
+            class="card-img-top"
+            alt="Beautiful Landscape"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Coffee</h5>
+            <a class="card-text text-decoration-none">See nearby market</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <img
+            src="/images/coconut.jpg"
+            class="card-img-top"
+            alt="Beautiful Landscape"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Coconut</h5>
+            <a class="card-text text-decoration-none">See nearby market</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <img
+            src="/images/Chickpea.jpg"
+            class="card-img-top"
+            alt="Beautiful Landscape"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Chickpea</h5>
+            <a class="card-text text-decoration-none">See nearby market</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card">
+          <img
+            src="/images/watermelon.jpg"
+            class="card-img-top"
+            alt="Beautiful Landscape"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Watermelon</h5>
+            <a href="/" class="card-text text-decoration-none"
+              >See nearby market</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

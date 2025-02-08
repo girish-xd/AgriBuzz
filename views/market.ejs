@@ -1,0 +1,74 @@
+<% layout("/layouts/boilerplate")%>
+<canvas id="fruitPriceChart" width="400" height="200"></canvas>
+
+<script>
+  var ctx = document.getElementById("fruitPriceChart").getContext("2d");
+  var fruitPriceChart = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: [
+        "Apple",
+        "Banana",
+        "Pomegranate",
+        "Papaya",
+        "Orange",
+        "Muskmelon",
+        "Mango",
+        "Grapes",
+        "Watermelon",
+      ],
+      datasets: [
+        {
+          label: "Market Price in September (₹/kg)",
+          data: [120, 40, 150, 50, 60, 30, 100, 90, 25], // Market price in INR per kg
+          backgroundColor: [
+            "red", // Apple
+            "yellow", // Banana
+            "red", // Pomegranate
+            "orange", // Papaya
+            "orange", // Orange
+            "green", // Muskmelon
+            "yellow", // Mango
+            "purple", // Grapes
+            "green", // Watermelon
+          ],
+          borderColor: [
+            "red",
+            "yellow",
+            "red",
+            "orange",
+            "orange",
+            "green",
+            "yellow",
+            "purple",
+            "green",
+          ],
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: "Price (₹/kg)",
+          },
+        },
+        x: {
+          title: {
+            display: true,
+            text: "Fruits",
+          },
+        },
+      },
+      plugins: {
+        title: {
+          display: true,
+          text: "Average Market Price per Kg in September",
+        },
+      },
+    },
+  });
+</script>

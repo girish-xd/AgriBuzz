@@ -1,0 +1,181 @@
+<% layout("/layouts/boilerplate")%>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12">
+      <h3 class="text-center">Sign Up</h3>
+      <form
+        action="/user/register"
+        class="needs-validation"
+        method="post"
+        enctype="multipart/form-data"
+        novalidate
+      >
+        <div class="row">
+          <div class="col-md-8">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label" for="firstName">First Name</label>
+                <input
+                  type="text"
+                  name="firstName"
+                  class="form-control"
+                  id="firstName"
+                  placeholder="Enter first name"
+                  required
+                />
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label" for="lastName">Last Name</label>
+                <input
+                  type="text"
+                  name="lastName"
+                  class="form-control"
+                  id="lastName"
+                  placeholder="Enter last name"
+                  required
+                />
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="email">Email address</label>
+              <input
+                type="email"
+                class="form-control"
+                name="email"
+                id="email"
+                placeholder="Enter email"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="dob">Date of Birth</label>
+              <input
+                type="date"
+                name="dob"
+                class="form-control"
+                id="dob"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="gender">Gender</label>
+              <select name="gender" class="form-control" id="gender" required>
+                <option>Select Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="password">Password</label>
+              <input
+                name="password"
+                type="password"
+                class="form-control"
+                id="password"
+                placeholder="Enter password"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="confirmPassword"
+                >Confirm Password</label
+              >
+              <input
+                name="confirmPassword"
+                type="password"
+                class="form-control"
+                id="confirmPassword"
+                placeholder="Confirm Password"
+                required
+              />
+            </div>
+          </div>
+          <div
+            class="col-md-4 text-center d-flex align-items-center justify-content-center"
+          >
+            <div class="position-relative">
+              <div class="avatar-preview mb-3">
+                <img
+                  height="500"
+                  width="500"
+                  id="avatarImage"
+                  src="https://via.placeholder.com/150"
+                  alt="Avatar"
+                  class="rounded-circle img-fluid"
+                />
+              </div>
+              <input
+                type="file"
+                class="form-control d-none"
+                id="avatarUpload"
+                name="avatar"
+              />
+              <button
+                type="button"
+                class="btn btn-primary position-absolute"
+                id="pencil-icon"
+                style="bottom: 10px; right: 20px"
+              >
+                <i class="fas fa-pencil-alt"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  document
+    .getElementById("avatarUpload")
+    .addEventListener("change", function (event) {
+      const reader = new FileReader();
+      reader.onload = function () {
+        const output = document.getElementById("avatarImage");
+        output.src = reader.result;
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    });
+  document.getElementById("pencil-icon").addEventListener("click", function () {
+    document.getElementById("avatarUpload").click();
+  });
+
+  document
+    .getElementById("avatarUpload")
+    .addEventListener("change", function (event) {
+      const reader = new FileReader();
+      reader.onload = function () {
+        const output = document.getElementById("avatarImage");
+        output.src = reader.result;
+        output.style.width = "500px";
+        output.style.height = "500px";
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    });
+  (() => {
+    "use strict";
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    const forms = document.querySelectorAll(".needs-validation");
+
+    // Loop over them and prevent submission
+    Array.from(forms).forEach((form) => {
+      form.addEventListener(
+        "submit",
+        (event) => {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+
+          form.classList.add("was-validated");
+        },
+        false
+      );
+    });
+  })();
+</script>

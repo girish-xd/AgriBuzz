@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg bg-success bg-body-tertiary">
+  <div class="container-fluid">
+    <!-- Logo and Toggler -->
+    <a class="navbar-brand fw-bold" href="/agribuzz">AgriBuzz</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Links and Buttons -->
+    <div class="collapse navbar-collapse h-12" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/agribuzz"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#about-section">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#service-section">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#team-section">Team</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/agribuzz/contact">Contact</a>
+        </li>
+      </ul>
+
+      <!-- Sign In and Register Buttons -->
+      <div class="d-flex align-items-center">
+        <% if (currUser) { %>
+        <a class="btn btn-danger btn-sm rounded-2xl mr-4" href="/user/logout"
+          >Log Out</a
+        >
+        <a
+          href="/user/<%= currUser.id %>/dashboard"
+          class="d-flex align-items-center"
+        >
+          <img
+            class="rounded-circle border border-gray-300"
+            src="<%= currUser.avatar %>"
+            alt="User avatar"
+            style="width: 45px; height: 45px; object-fit: cover"
+          />
+          <span
+            class="ms-2 badge bg-success"
+            style="width: 15px; height: 15px; border-radius: 50%"
+          ></span>
+        </a>
+        <% } else { %>
+        <a class="btn btn-secondary me-2" href="/user/loginUser">Sign In</a>
+        <a class="btn btn-dark" href="/user/registerUser">Register</a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/maps/maps.css"
+    />
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/maps/maps-web.min.js"></script>
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/services/services-web.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Nearby Markets</title>
+    <style>
+      #map {
+        width: 100%;
+        height: 600px;
+      }
+    </style>
+  </head>
+  <body style="background: linear-gradient(70deg, #121212, #232323)">
+    <h1 style="color: white">MAP VIEW</h1>
+    <div class="map-container">
+      <h4 style="color: white">Nearby Markets:</h4>
+      <div id="map" style="width: 100vw; height: 80vh"></div>
+    </div>
+  </body>
+  <script>
+    window.onload = function () {
+      var map = tt.map({
+        key: "3YzQxwAFHF8yAMWxHfKrjbNN1U3WHarx", // Replace with your TomTom API Key
+        container: "map",
+        center: [0, 0],
+        zoom: 14,
+      });
+
+      map.addControl(new tt.NavigationControl());
+
+      let currentRouteLayerId = null;
+
+      // Function to create a marker
+      function createMarker(lngLat, color, popupText, onClick) {
+        var marker = new tt.Marker({ color: color })
+          .setLngLat(lngLat)
+          .setPopup(new tt.Popup().setText(popupText))
+          .addTo(map);
+
+        if (onClick) {
+          marker.getElement().addEventListener("click", function () {
+            onClick(lngLat);
+          });
+        }
+      }
+
+      // Function to create a route
+      function createRoute(start, end) {
+        // Remove the existing route if there is one
+        if (currentRouteLayerId) {
+          map.removeLayer(currentRouteLayerId);
+          map.removeSource(currentRouteLayerId);
+        }
+
+        tt.services
+          .calculateRoute({
+            key: "3YzQxwAFHF8yAMWxHfKrjbNN1U3WHarx", // Replace with your TomTom API Key
+            traffic: false,
+            locations: [start, end],
+          })
+          .then(function (routeData) {
+            var geojson = routeData.toGeoJson();
+            currentRouteLayerId =
+              "route-" + start.join("-") + "-" + end.join("-");
+
+            map.addLayer({
+              id: currentRouteLayerId,
+              type: "line",
+              source: {
+                type: "geojson",
+                data: geojson,
+              },
+              layout: {
+                "line-cap": "round",
+                "line-join": "round",
+              },
+              paint: {
+                "line-color": "#000000", // Change the route color here
+                "line-width": 6,
+              },
+            });
+
+            // Zoom to fit the route
+            var bounds = new tt.LngLatBounds();
+            geojson.features[0].geometry.coordinates.forEach(function (coord) {
+              bounds.extend(coord);
+            });
+            map.fitBounds(bounds, { padding: 20 });
+          })
+          .catch(function (error) {
+            console.error("Error creating route: ", error);
+          });
+      }
+
+      // Get the user's location
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          function (position) {
+            var userLocation = [
+              position.coords.longitude,
+              position.coords.latitude,
+            ];
+            map.setCenter(userLocation);
+
+            // Add a marker for the user's location
+            createMarker(userLocation, "blue", "You are here");
+
+            // Search for nearby markets using TomTom Search API
+            axios
+              .get("https://api.tomtom.com/search/2/nearbySearch/.json", {
+                params: {
+                  key: "3YzQxwAFHF8yAMWxHfKrjbNN1U3WHarx", // Replace with your TomTom API Key
+                  lat: userLocation[1],
+                  lon: userLocation[0],
+                  radius: 5000, // Search within a 5km radius
+                  categorySet: "7315", // Category code for supermarkets/markets
+                  limit: 100, // Limit the number of results
+                },
+              })
+              .then(function (response) {
+                const results = response.data.results;
+                results.forEach(function (result) {
+                  const position = [result.position.lon, result.position.lat];
+                  createMarker(
+                    position,
+                    "red",
+                    result.poi.name,
+                    function (targetLocation) {
+                      // Create route when marker is clicked
+                      createRoute(userLocation, targetLocation);
+                    }
+                  );
+                });
+
+                // Adjust map view to show all markers
+                if (results.length > 0) {
+                  const bounds = new tt.LngLatBounds();
+                  results.forEach(function (result) {
+                    bounds.extend([result.position.lon, result.position.lat]);
+                  });
+                  map.fitBounds(bounds, { padding: 20 });
+                }
+              })
+              .catch(function (error) {
+                console.error("Error fetching nearby markets: ", error);
+              });
+          },
+          function (error) {
+            console.error("Error getting user location: ", error);
+          }
+        );
+      } else {
+        console.error("Geolocation is not supported by this browser.");
+      }
+    };
+  </script>
+</html>

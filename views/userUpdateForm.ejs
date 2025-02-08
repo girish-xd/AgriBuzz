@@ -1,0 +1,101 @@
+<% layout("/layouts/boilerplate")%>
+
+<div class="container bg-white p-4 rounded-lg shadow-sm">
+  <h2 class="text-center h4 font-weight-bold mb-4">
+    Update User Information <br /><span class="text-muted">(Only Once)</span>
+  </h2>
+  <!-- User Info Form -->
+  <form action="/user/<%=currUser.id%>/updateUser?_method=PUT" method="POST">
+    <div class="row align-items-center">
+      <!-- Left Section: User Info -->
+      <div class="col-md-8">
+        <!-- firstName Field -->
+        <div class="mb-3">
+          <label for="firstName" class="form-label">FirstName</label>
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            value="<%= currUser.firstName %>"
+            required
+            class="form-control"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="Last Name" class="form-label">lastName</label>
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            value="<%= currUser.lastName %>"
+            required
+            class="form-control"
+          />
+        </div>
+
+        <!-- Email Field -->
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value="<%= currUser.email %>"
+            required
+            class="form-control"
+          />
+        </div>
+
+        <!-- Submit Button -->
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
+          <button type="submit" class="btn btn-success">Update Info</button>
+        </div>
+      </div>
+
+      <!-- Right Section: Avatar Display with Pencil Icon -->
+      <div
+        class="col-md-4 d-flex justify-content-center mt-4 mt-md-0 position-relative"
+      >
+        <div
+          class="position-relative rounded-circle overflow-hidden border border-secondary"
+          style="width: 150px; height: 150px"
+        >
+          <img
+            id="avatarPreview"
+            src="<%= currUser.avatar %>"
+            alt="Current Avatar"
+            class="w-100 h-100 rounded-circle object-fit-cover"
+          />
+          <div
+            class="absolute end-0 p-1 rounded-circle cursor-pointer"
+            onclick="document.getElementById('avatar').click()"
+          >
+            <i class="fa-solid fa-pencil"></i>
+          </div>
+        </div>
+
+        <input
+          type="file"
+          id="avatar"
+          name="avatar"
+          accept="image/*"
+          class="d-none"
+          onchange="previewAvatar(event)"
+        />
+      </div>
+    </div>
+  </form>
+</div>
+
+<script>
+  function previewAvatar(event) {
+    const reader = new FileReader();
+    reader.onload = function () {
+      const output = document.getElementById("avatarPreview");
+      output.src = reader.result;
+    };
+    if (event.target.files[0]) {
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+</script>
